@@ -1,7 +1,8 @@
 # WIP2_Reklamationsmanagementsystem
 
 Bestellnummer eingeben:
-![image](https://github.com/Lukazzer/WIP2_Reklamationsmanagementsystem/assets/131675716/58a79995-0891-4487-8be0-c5aa7339386c)
+![image](https://github.com/Lukazzer/WIP2_Reklamationsmanagementsystem/assets/131675716/f76c9f60-ac6e-4cf9-9f0b-3e815618d837)
+
 
 Bestelllung einsehen und Retoure vorbereiten:
 ![image](https://github.com/Lukazzer/WIP2_Reklamationsmanagementsystem/assets/131675716/e9dbd222-ffd7-4e2e-9600-00ac6ca2d610)
