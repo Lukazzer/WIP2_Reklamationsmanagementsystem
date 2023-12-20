@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #CED0CE;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .refund-details {
+    margin-top: 20px;
+  }
+  
+  .refund-details strong {
+    margin-right: 5px;
+  }
+  
+  p {
+    margin-bottom: 15px;
+  }
+
+  .buttons {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  button {
+    background-color: #191919;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  button:hover {
+    background-color: #F15025;
+  }
+
+   .container_Info{
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #191919;
+    padding: 20px;
+    border-radius: 8px;
+    color: rgb(115, 255, 0);
+  }

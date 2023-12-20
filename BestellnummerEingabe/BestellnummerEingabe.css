@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #CED0CE;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.container_Info{
+    max-width: 500px;
+    margin: 20px auto;
+    background-color: #191919;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+  }
+
+input[type="text"] {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #191919;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #F15025;
+}
+
+#orderNumber{
+    background-color: #e6e8e6;
+    border-radius: 5px;
+    border:none;
+}
