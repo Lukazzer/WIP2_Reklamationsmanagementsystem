@@ -11,20 +11,20 @@
 <body>
 
   <?php
-  // Pfade anpassen
-  $bildPfad = './1.png';
+ 
+  $imagePath = './aspirin.png';
   ?>
-  <div class="container_Info">
+  <div class="container_header">
     Bestellung: 1919191
   </div>
-  <div class="container_vorschauBilder">
+  <div class="container_previewImages">
     <div class="wrapper">
-      <div class="labelBild">
-        <label for="bildLabelOben">Aspirin Protect 100mg</label>
+      <div class="imageLabel">
+        <label for="topImageLabel">Aspirin Protect 100mg</label>
       </div>
-      <div class="bild">
-        <img src="<?php echo $bildPfad; ?>" alt="Bild" class="vorschauBild">
-        <div class="anzahlRetour">
+      <div class="image">
+        <img src="<?php echo $imagePath; ?>" alt="image" class="previewImage">
+        <div class="refundCounter">
           <label class="Label_left">3x</label>
           <select id="refundCount" name="refundCount" required>
             <option value="" enabled selected>0x</option>
@@ -37,13 +37,13 @@
         </div>
       </div>
 
-      <div class="labelBild">
-        <label for="bildLabelOben">12322232</label>
+      <div class="imageLabel">
+        <label for="topImageLabel">12322232</label>
       </div>
     </div>
   </div>
 
-  <div class="container_grund">
+  <div class="container_reason">
     <label for="refundReason">Grund für die Erstattung: </label>
     <select id="refundReason" name="refundReason" required>
       <option value="" disabled selected>Wählen Sie einen Grund</option>
@@ -55,10 +55,10 @@
     </select>
   </div>
 
-  <div class="container_beschreibung">
+  <div class="container_description">
     <label for="refundReason">Beschreibung der Probleme:</label>
     <textarea id="text" name="text" cols="35" rows="4"></textarea>
-    <button id="einreichen">Rücksendung einreichen</button>
+    <button id="submit">Rücksendung einreichen</button>
 
   </div>
 

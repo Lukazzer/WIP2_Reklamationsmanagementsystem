@@ -9,10 +9,10 @@
 </head>
 
 <body>
-  <div class="container_Info">
+  <div class="container_header">
     Retoure bestätigt: 12322
   </div>
-  <div class="container">
+  <div class="container_content">
 
     <p>Liebe [Kundenname],</p>
 

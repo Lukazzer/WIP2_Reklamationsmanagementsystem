@@ -9,11 +9,11 @@
 </head>
 
 <body>
-    <div class="container_Info">
+    <div class="container_header">
         Retoure einsehen
     </div>
-    <div class="container">
-        <input type="text" id="returnNumber" placeholder="Retourenummer eingeben...">
+    <div class="container_content">
+        <input type="text" id="refundID" placeholder="Retourenummer eingeben...">
         <button onclick="getRetoureInfo()">OK</button>
     </div>
 </body>

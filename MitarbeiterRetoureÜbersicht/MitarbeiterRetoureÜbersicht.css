@@ -11,7 +11,7 @@ body {
   }
   
   
-  .refund-details {
+  .refundDetails {
     margin-top: 20px;
   }
   
@@ -42,7 +42,7 @@ body {
     background-color: #F15025;
   }
 
-  .container_Info{
+  .container_header{
     max-width: 800px;
     margin: 20px auto;
     background-color: #191919;
@@ -51,7 +51,7 @@ body {
     color: white;
   }
 
-  .vorschauBild{
+  .imagePreview{
     float:left;
   }
 

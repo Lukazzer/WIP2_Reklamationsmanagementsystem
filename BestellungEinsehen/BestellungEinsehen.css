@@ -3,7 +3,7 @@ body {
     
   }
   
-  .container_vorschauBilder{
+  .container_previewImages{
     max-width: 800px;
     margin: 20px auto;
     background-color: #CED0CE;
@@ -11,7 +11,7 @@ body {
     border-radius: 8px;
   }
 
-  .container_Info{
+  .container_header{
     max-width: 800px;
     margin: 20px auto;
     background-color: #191919;
@@ -37,7 +37,7 @@ body {
   text-align: center;
 }
 
-  .container_grund{
+  .container_reason {
     max-width: 800px;
     margin: 20px auto;
     background-color: #CED0CE;
@@ -45,7 +45,7 @@ body {
     border-radius: 8px;
   }
 
-  .container_beschreibung{
+  .container_description{
     max-width: 800px;
     margin: 20px auto;
     background-color: #CED0CE;
@@ -101,8 +101,8 @@ body {
   }
 
 
-.labelBild,
-.bild {
+.imageLabel,
+.image {
   border: 1px solid black;
   padding: 2px 5px 2px;
   box-sizing: border-box; 
@@ -112,7 +112,7 @@ body {
   background-color: #e6e8e6;
   
 }
-.vorschauBild{
+.previewImage{
   width: 300px;
 }
 
@@ -144,7 +144,7 @@ body {
   background-color: #FFFFFF;
 }
 
-.anzahlRetour { 
+.refundCounter { 
   
   
   overflow:auto;

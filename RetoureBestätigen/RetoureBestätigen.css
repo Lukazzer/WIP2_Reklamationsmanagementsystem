@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
   }
   
-  .container {
+  .container_content {
     max-width: 800px;
     margin: 20px auto;
     background-color: #CED0CE;
@@ -45,7 +45,7 @@ body {
     background-color: #F15025;
   }
 
-   .container_Info{
+   .container_header{
     max-width: 800px;
     margin: 20px auto;
     background-color: #191919;

@@ -11,19 +11,19 @@
 <body>
 
   <?php
-  // Pfade anpassen
-  $bildPfad = '../BestellungEinsehen/1.png';
+  
+  $imagePath = '../BestellungEinsehen/aspirin.png';
   ?>
 
-  <div class="container_Info">
+  <div class="container_header">
     Retourenummer: 12322
   </div>
   <div class="container">
 
 
-    <div class="refund-details">
+    <div class="refundDetails">
       <div class="product">
-        <img src="<?php echo $bildPfad; ?>" alt="Bild" class="vorschauBild">
+        <img src="<?php echo $imagePath; ?>" alt="image" class="imagePreview">
         <div class="productInfo">
           <p>Name: Aspirin Protect 100mg</p>
           <p>Nummer: 12322232</p>
