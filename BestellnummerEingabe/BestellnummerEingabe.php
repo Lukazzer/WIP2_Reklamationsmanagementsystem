@@ -84,7 +84,7 @@
     </div>
 
     <?php
-    if(isset($_POST['orderNumberBtn'])){
+    if (isset($_POST['orderNumberBtn'])) {
         $db_handle = pg_connect("host=postgresql-database-server.postgres.database.azure.com dbname=reklamation_db user=coolman password=6L_.?6=8T8a~]cy");
 
         if ($db_handle) {
@@ -100,7 +100,10 @@
                 if (pg_numrows($result) > 0) {
                     // Weiterleitung mit URL-Parameter
                     $redirectUrl = "https://reklamationsmaster.azurewebsites.net/BestellungEinsehen/BestellungEinsehen.php?redirected=true&orderNumber=" . urlencode($orderNumber);
-                    header('Location: ' . $redirectUrl);
+                    $script = "<script>
+                    window.location =" . $redirectUrl . ";</script>";
+                    echo $script;
+                    exit;
                 } else {
                     echo "Bestellnummer nicht gefunden.";
                 }
@@ -113,7 +116,7 @@
             echo "Verbindung zur Datenbank fehlgeschlagen.";
         }
     }
-?>
+    ?>
 
 
 </body>
