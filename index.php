@@ -45,9 +45,11 @@
                 echo $data . "<br>";
             }
         }
-    } else {
-        // Do error stuff
+
+        pg_close($db_handle);
     }
+
+    header('Location: https://reklamationsmaster.azurewebsites.net/BestellnummerEingabe/BestellnummerEingabe.php');
     ?>
 </body>
 
