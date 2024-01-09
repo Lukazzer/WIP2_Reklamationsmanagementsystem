@@ -7,8 +7,7 @@
     // Do Stuff
   } else {
     // Weiterleitung zurück zur ursprünglichen Seite
-    $script = "<script>
-    window.location = https://reklamationsmaster.azurewebsites.net/index.php;</script>";
+    $script = "<script>window.location.href = https://reklamationsmaster.azurewebsites.net/index.php;</script>";
     echo $script;
     exit;
   }
