@@ -100,8 +100,7 @@
                 if (pg_numrows($result) > 0) {
                     // Weiterleitung mit URL-Parameter
                     $redirectUrl = "https://reklamationsmaster.azurewebsites.net/BestellungEinsehen/BestellungEinsehen.php?redirected=true&orderNumber=" . urlencode($orderNumber);
-                    $script = "<script>
-                    window.location =" . $redirectUrl . ";</script>";
+                    $script = "<script>window.location.href = {$redirectUrl};</script>";
                     echo $script;
                     exit;
                 } else {
