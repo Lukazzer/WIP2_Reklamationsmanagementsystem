@@ -22,7 +22,7 @@
         <div class="container_orderNumber">
             <form method="post" action="">
                 <input type="text" id="orderNumber" name="orderNumber" placeholder="Bestellnummer eingeben...">
-                <button type="reset" name="orderNumberBtn" onclick="pressed()">OK</button>
+                <button type="reset" name="orderNumberBtn">OK</button>
             </form>
         </div>
         <div class="container_faq">
