@@ -22,7 +22,7 @@
         <div class="container_orderNumber">
             <form method="post" action="">
                 <input type="text" id="orderNumber" name="orderNumber" placeholder="Bestellnummer eingeben...">
-                <button type="submit" name="orderNumberBtn">OK</button>
+                <button type="reset" name="orderNumberBtn" onclick="pressed()">OK</button>
             </form>
         </div>
         <div class="container_faq">
@@ -100,7 +100,7 @@
                 if (pg_numrows($result) > 0) {
                     // Weiterleitung mit URL-Parameter
                     $redirectUrl = "https://reklamationsmaster.azurewebsites.net/BestellungEinsehen/BestellungEinsehen.php?redirected=true&orderNumber=" . urlencode($orderNumber);
-                    $script = "<script>window.location.href = {$redirectUrl};</script>";
+                    $script = "<script>window.location.href = '{$redirectUrl}';</script>";
                     echo $script;
                     exit;
                 } else {
@@ -116,8 +116,6 @@
         }
     }
     ?>
-
-
 </body>
 
 </html>
