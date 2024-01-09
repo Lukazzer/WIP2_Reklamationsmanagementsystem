@@ -1,18 +1,3 @@
-<?php
-  include '../Design/design.php';
-
-  if (isset($_GET['redirected']) && $_GET['redirected'] == 'true' && isset($_GET['orderNumber'])) {
-    // Die Seite wurde vom Skript weitergeleitet
-    $orderNumber = $_GET['orderNumber'];
-    // Do Stuff
-  } else {
-    // Weiterleitung zurück zur ursprünglichen Seite
-    $script = "<script>window.location.href = https://reklamationsmaster.azurewebsites.net/index.php;</script>";
-    echo $script;
-    exit;
-  }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +11,19 @@
   include '../Design/design.php';
   ?>
   <title>Formular für Erstattungsanträge</title>
+
+  <?php
+  if (isset($_GET['redirected']) && $_GET['redirected'] == 'true' && isset($_GET['orderNumber'])) {
+    // Die Seite wurde vom Skript weitergeleitet
+    $orderNumber = $_GET['orderNumber'];
+    // Do Stuff
+  } else {
+    // Weiterleitung zurück zur ursprünglichen Seite
+    $script = "<script>window.location.href = 'https://reklamationsmaster.azurewebsites.net/index.php';</script>";
+    echo $script;
+    exit;
+  }
+  ?>
 </head>
 
 <body>
