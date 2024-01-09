@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Willkommen</title>
 </head>
+
 <body>
     <header>
         <h1>Willkommen</h1>
@@ -21,7 +23,32 @@
     </main>
 
     <footer>
-        <p>&copy; <?php echo date("Y"); ?> Meine Text-Website. Alle Rechte vorbehalten.</p>
+        <p>&copy;
+            <?php echo date("Y"); ?> Meine Text-Website. Alle Rechte vorbehalten.
+        </p>
     </footer>
+
+    <?php
+    $db_handle = pg_connect("host=postgresql-database-server.postgres.database.azure.com dbname=reklamation_db user=coolman password=6L_.?6=8T8a~]cy");
+    if ($db_handle) {
+        // Daten abgreifen
+        $query = "SELECT * FROM product";
+        $result = pg_exec($db_handle, $query);
+
+        // Nur wenn erfolgreich
+        if ($result) {
+            echo "result";
+
+            // Jede Row durchgehen und die Spalte "name" printen
+            for ($row = 0; $row < pg_numrows($result); $row++) {
+                $data = pg_result($result, $row, 'name');
+                echo $data . "<br>";
+            }
+        }
+    } else {
+        // Do error stuff
+    }
+    ?>
 </body>
+
 </html>
