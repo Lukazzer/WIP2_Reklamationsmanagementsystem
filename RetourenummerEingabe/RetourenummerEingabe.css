@@ -3,7 +3,7 @@ body {
 }
 
 .container_content {
-    max-width: 500px;
+    width: 90%;
     margin: 20px auto;
     padding: 20px;
     background-color: #CED0CE;
@@ -12,9 +12,9 @@ body {
 }
 
   .container_header{
-    max-width: 500px;
+    width: 90%;
     margin: 20px auto;
-    background-color: #191919;
+    background-color: #24252a;
     padding: 20px;
     border-radius: 8px;
     color: white;
@@ -26,9 +26,9 @@ input[type="text"] {
     margin-bottom: 10px;
 }
 
-button {
+.container_body button {
     padding: 10px 20px;
-    background-color: #191919;
+    background-color: #24252a;
     color: rgb(255, 255, 255);
     border: none;
     border-radius: 5px;
@@ -36,8 +36,8 @@ button {
     margin-top: 10px;
 }
 
-button:hover {
-    background-color: #F15025;
+.container_body button:hover {
+    background-color:  rgba(0, 136, 169, 1);
 }
 
 #refundID{

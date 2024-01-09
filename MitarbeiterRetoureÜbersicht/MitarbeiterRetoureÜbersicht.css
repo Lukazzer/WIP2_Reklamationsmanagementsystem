@@ -3,7 +3,7 @@ body {
   }
   
   .container {
-    max-width: 800px;
+    width: 90%;
     margin: 20px auto;
     background-color: #CED0CE;
     padding: 20px;
@@ -20,6 +20,10 @@ body {
     padding: 10px;
     margin-bottom: 10px;
   }
+
+  .productInfo{
+    margin: 30px;
+  }
   
   .action-buttons {
     text-align: center;
@@ -28,7 +32,7 @@ body {
   
   .accept-button,
   .reject-button {
-    background-color: #191919;
+    background-color: #24252a;
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -39,13 +43,13 @@ body {
   
   .accept-button:hover,
   .reject-button:hover {
-    background-color: #F15025;
+    background-color: rgba(0, 136, 169, 1);
   }
 
   .container_header{
-    max-width: 800px;
+    width: 90%;
     margin: 20px auto;
-    background-color: #191919;
+    background-color: #24252a;
     padding: 20px;
     border-radius: 8px;
     color: white;

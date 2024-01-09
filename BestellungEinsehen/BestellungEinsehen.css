@@ -4,7 +4,7 @@ body {
   }
   
   .container_previewImages{
-    max-width: 800px;
+    width: 90%;
     margin: 20px auto;
     background-color: #CED0CE;
     padding: 20px;
@@ -12,9 +12,9 @@ body {
   }
 
   .container_header{
-    max-width: 800px;
+    width: 90%;
     margin: 20px auto;
-    background-color: #191919;
+    background-color: #24252a;
     padding: 20px;
     border-radius: 8px;
     color: white;
@@ -38,7 +38,7 @@ body {
 }
 
   .container_reason {
-    max-width: 800px;
+   width: 90%;
     margin: 20px auto;
     background-color: #CED0CE;
     padding: 20px;
@@ -46,7 +46,7 @@ body {
   }
 
   .container_description{
-    max-width: 800px;
+    width: 90%;
     margin: 20px auto;
     background-color: #CED0CE;
     padding: 20px;
@@ -79,20 +79,20 @@ body {
     margin-bottom: 12px;
   }
   
-  button {
+  .container_body button {
     
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
-    background-color: #191919;
+    background-color: #24252a;
     color: white;
     display: block;
   }
   
-  button:hover{
-    background-color: #F15025;
+  .container_body button:hover{
+    background-color: rgba(0, 136, 169, 1);
   }
   
   .confirmation {

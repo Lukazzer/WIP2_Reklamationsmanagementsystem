@@ -3,7 +3,7 @@ body {
   }
   
   .container_content {
-    max-width: 800px;
+    max-width: 90%;
     margin: 20px auto;
     background-color: #CED0CE;
     padding: 20px;
@@ -28,11 +28,11 @@ body {
 
   .buttons {
     margin-top: 20px;
-    text-align: center;
+    text-align: left;
   }
   
-  button {
-    background-color: #191919;
+  .container_body button {
+    background-color: #24252a;
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -41,14 +41,14 @@ body {
     margin-right: 10px;
   }
   
-  button:hover {
-    background-color: #F15025;
+  .container_body button:hover {
+    background-color: rgba(0, 136, 169, 1);
   }
 
    .container_header{
-    max-width: 800px;
+    max-width: 90%;
     margin: 20px auto;
-    background-color: #191919;
+    background-color: #24252a;
     padding: 20px;
     border-radius: 8px;
     color: rgb(115, 255, 0);

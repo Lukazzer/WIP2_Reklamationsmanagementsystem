@@ -1,32 +1,38 @@
 body {
     font-family: Arial, sans-serif;
+    
 }
 
 .container_orderNumber {
-    max-width: 500px;
+    width: 90%;
     margin: 20px auto;
     padding: 20px;
     background-color: #CED0CE;
     border-radius: 8px;
     text-align: center;
+    
 }
 
 .container_header{
-    max-width: 500px;
+    max-width: 90%;
     margin: 20px auto;
-    background-color: #191919;
+    background-color: #24252a/*#191919*/;
     padding: 20px;
     border-radius: 8px;
     color: white;
+    text-align: center;
+    
+   
   }
 
   .container_faq{
-    max-width: 500px;
-    margin: 20px auto;
+    max-width: 90%;
+    margin: 2px auto;
     background-color: #CED0CE;
     padding: 20px;
     border-radius: 8px;
     color: black;
+    
   }
 
 
@@ -36,9 +42,9 @@ input[type="text"] {
     margin-bottom: 10px;
 }
 
-button {
+.container_body button  {
     padding: 10px 20px;
-    background-color: #191919;
+    background-color: #24252a;
     color: rgb(255, 255, 255);
     border: none;
     border-radius: 5px;
@@ -46,8 +52,8 @@ button {
     margin-top: 10px;
 }
 
-button:hover {
-    background-color: #F15025;
+.container_body button:hover {
+    background-color: rgba(0, 136, 169, 1);
 }
 
 #orderNumber{
