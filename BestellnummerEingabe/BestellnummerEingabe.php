@@ -116,6 +116,18 @@
         }
     }
     ?>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("submit").addEventListener("click", function () {
+                
+                var orderNumber = "<?php echo isset($orderNumber) ? $orderNumber : ''; ?>";
+
+                var redirectUrl = "https://reklamationsmaster.azurewebsites.net/BestellungEinsehen/BestellungEinsehen.php?redirected=true&orderNumber=" + encodeURIComponent(orderNumber);
+                window.location.href = redirectUrl;
+            });
+        });
+    </script>
 </body>
 
 </html>
