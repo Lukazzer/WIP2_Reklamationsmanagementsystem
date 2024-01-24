@@ -92,7 +92,7 @@
             $orderNumber = pg_escape_string($db_handle, $_POST['orderNumber']);
 
             // Vorbereitete Anweisung zur Überprüfung der Bestellnummer
-            $result = pg_prepare($db_handle, "my_query", 'SELECT * FROM product WHERE id = $1');
+            $result = pg_prepare($db_handle, "my_query", 'SELECT * FROM customer_product WHERE id = $1');
             $result = pg_execute($db_handle, "my_query", array($orderNumber));
 
             if ($result) {

@@ -16,7 +16,6 @@
   if (isset($_GET['redirected']) && $_GET['redirected'] == 'true' && isset($_GET['orderNumber'])) {
     // Die Seite wurde vom Skript weitergeleitet
     $orderNumber = $_GET['orderNumber'];
-    // Do Stuff
   } else {
     // Weiterleitung zurück zur ursprünglichen Seite
     $script = "<script>window.location.href = 'https://reklamationsmaster.azurewebsites.net/index.php';</script>";
@@ -89,5 +88,3 @@
 </body>
 
 </html>
-
-</div>
