@@ -70,6 +70,19 @@
       $resultReason = pg_execute($db_handle, "query_reason", array($reasonId));
       $reason = pg_fetch_assoc($resultReason);
       $refundReason = $reason['description'];
+
+      if (isset($_POST['sendEmail'])) {
+        $to = 'empfaenger@example.com';
+        $subject = 'Ihr Rücksendeticket';
+        $message = 'Anweisung';
+        $headers = 'From: absender@example.com';
+
+        if (mail($to, $subject, $message, $headers)) {
+          echo 'E-Mail wurde gesendet.';
+        } else {
+          echo 'E-Mail konnte nicht gesendet werden.';
+        }
+      }
     } else {
       exit;
     }
@@ -114,10 +127,13 @@
 
       <p>Danke, dass Sie sich für unseren Service entschieden haben!</p>
 
-      <div class="buttons">
+      <form method="post" action="">
         <!-- <button id="retoureButton">Retoure bearbeiten</button> -->
-        <button id="downloadButton">Rücksendeetickett und Anweisungen herunterladen</button>
-      </div>
+        <div class="buttons">
+          <button type="submit" id="downloadButton" name="sendEmail">Rücksendeetickett und Anweisungen
+            herunterladen</button>
+        </div>
+      </form>
     </div>
   </div>
   </div>
