@@ -38,17 +38,16 @@
 
       $timestamp = date('Y-m-d H:i:s');
       $timestampPlus14Days = date('d.m.Y', strtotime($timestamp . ' + 14 days'));
-      
+
       $queryInsertComplaint = "INSERT INTO complaint (customer_product_id, employee_id, reason_id, status_id, priority_id, timestamp, payment_refund) VALUES ($1, $2, $3, 1, 1, $4, $5) RETURNING id";
-      $resultInsertComplaint = pg_prepare($db_handle, "query_insert_complaint", $queryInsertComplaint);
-      $resultInsertComplaint = pg_execute($db_handle, "query_insert_complaint", array($customerProductId, $employeeId, $reasonId, $timestamp, $paymentRefund));
+      $resultInsertComplaint = pg_query_params($db_handle, $queryInsertComplaint, array($customerProductId, $employeeId, $reasonId, $timestamp, $paymentRefund));
 
       if ($resultInsertComplaint) {
         $complaint = pg_fetch_assoc($resultInsertComplaint);
-        $complaintId = $complaint['id'];
+        $complaintId = $complaint['id']; // Die complaint_id
+      } else {
+        echo pg_last_error($db_handle);
       }
-
-      echo pg_last_error($db_handle);
 
       // Kundennamen abrufen
       $queryCustomer = "SELECT c.name FROM customer c JOIN customer_product cp ON c.id = cp.customer_id WHERE cp.id = $1";
@@ -107,8 +106,11 @@
       </div>
 
       <p>Ihnen wurde an die in der Bestellung hinterlegten E-Mail Adresse ein Rücsendeeticket mit weiteren Anweisungen
-        geschickt. Sie haben jetzt bis zum <?php echo htmlspecialchars($timestampPlus14Days); ?> Zeit, das Paket an uns zurückzuschicken. Danach verfällt die
-        Retoure automatisch.</p>
+        geschickt. Sie haben jetzt bis zum
+        <?php echo htmlspecialchars($timestampPlus14Days); ?> Zeit, das Paket an uns zurückzuschicken. Danach verfällt
+        die
+        Retoure automatisch.
+      </p>
 
       <p>Danke, dass Sie sich für unseren Service entschieden haben!</p>
 
