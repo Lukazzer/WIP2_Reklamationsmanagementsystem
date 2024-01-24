@@ -45,6 +45,10 @@
       if ($resultInsertComplaint) {
         $complaint = pg_fetch_assoc($resultInsertComplaint);
         $complaintId = $complaint['id'];
+
+        $queryInsertComplaintCustomerProduct = "INSERT INTO complaint_customer_product (customer_product_id, complaint_id) VALUES ($1, $2)";
+        $resultInsertComplaintCustomerProduct = pg_query_params($db_handle, $queryInsertComplaintCustomerProduct, array($customerProductId, $complaintId));
+
       } else {
         echo pg_last_error($db_handle);
       }

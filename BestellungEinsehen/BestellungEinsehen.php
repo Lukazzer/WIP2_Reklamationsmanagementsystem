@@ -14,6 +14,19 @@
 
   <?php
   if (isset($_GET['redirected']) && $_GET['redirected'] == 'true' && isset($_GET['orderNumber'])) {
+    $db_handle = pg_connect("host=postgresql-database-server.postgres.database.azure.com dbname=reklamation_db user=coolman password=6L_.?6=8T8a~]cy");
+
+    // Überprüfen, ob ein Eintrag in 'complaint' für die gegebene 'orderNumber' existiert
+    $queryCheckComplaint = "SELECT * FROM complaint_customer_product WHERE customer_product_id = $1";
+    $resultCheckComplaint = pg_prepare($db_handle, "query_check_complaint", $queryCheckComplaint);
+    $resultCheckComplaint = pg_execute($db_handle, "query_check_complaint", array($orderNumber));
+    if (pg_num_rows($resultCheckComplaint) > 0) {
+      // Eintrag existiert, zurück
+      pg_close($db_handle);
+      echo "<script>window.location.href = 'https://reklamationsmaster.azurewebsites.net/index.php';</script>";
+      exit;
+    }
+
     if (isset($_POST['submit'])) {
       $orderNumber = $_GET['orderNumber'];
       $refundReason = $_POST['refundReason'];
@@ -25,7 +38,6 @@
     }
 
     $orderNumber = $_GET['orderNumber'];
-    $db_handle = pg_connect("host=postgresql-database-server.postgres.database.azure.com dbname=reklamation_db user=coolman password=6L_.?6=8T8a~]cy");
 
     // Vorbereiten und Ausführen der SQL-Abfrage
     $query = "SELECT p.id, p.name, p.img_path, cp.quantity FROM product p INNER JOIN customer_product cp ON p.id = cp.product_id WHERE cp.id = $1";
