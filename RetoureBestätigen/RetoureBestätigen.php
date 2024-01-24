@@ -37,6 +37,7 @@
       $paymentRefund = $paymentIdRow['payment_id'];
 
       $timestamp = date('Y-m-d H:i:s');
+      $timestampPlus14Days = date('Y-m-d H:i:s', strtotime($timestamp . ' + 14 days'));
 
       $queryInsertComplaint = "INSERT INTO complaint (customer_product_id, employee_id, reason_id, status_id, priority_id, timestamp, payment_refund) VALUES ($1, $2, $3, 1, 1, $4, $5) RETURNING id";
       $resultInsertComplaint = pg_prepare($db_handle, "query_insert_complaint", $queryInsertComplaint);
@@ -44,7 +45,7 @@
 
       if ($resultInsertComplaint) {
         $complaint = pg_fetch_assoc($resultInsertComplaint);
-        $complaintId = $complaint['id']; // Die complaint_id
+        $complaintId = $complaint['id'];
       }
 
       // Kundennamen abrufen
@@ -104,7 +105,7 @@
       </div>
 
       <p>Ihnen wurde an die in der Bestellung hinterlegten E-Mail Adresse ein Rücsendeeticket mit weiteren Anweisungen
-        geschickt. Sie haben jetzt bis zum 15.12.2023 Zeit, das Paket an uns zurückzuschicken. Danach verfällt die
+        geschickt. Sie haben jetzt bis zum <?php echo htmlspecialchars($timestampPlus14Days); ?> Zeit, das Paket an uns zurückzuschicken. Danach verfällt die
         Retoure automatisch.</p>
 
       <p>Danke, dass Sie sich für unseren Service entschieden haben!</p>
