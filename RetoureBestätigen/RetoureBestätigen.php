@@ -37,8 +37,8 @@
       $paymentRefund = $paymentIdRow['payment_id'];
 
       $timestamp = date('Y-m-d H:i:s');
-      $timestampPlus14Days = date('Y-m-d H:i:s', strtotime($timestamp . ' + 14 days'));
-
+      $timestampPlus14Days = date('d.m.Y', strtotime($timestamp . ' + 14 days'));
+      
       $queryInsertComplaint = "INSERT INTO complaint (customer_product_id, employee_id, reason_id, status_id, priority_id, timestamp, payment_refund) VALUES ($1, $2, $3, 1, 1, $4, $5) RETURNING id";
       $resultInsertComplaint = pg_prepare($db_handle, "query_insert_complaint", $queryInsertComplaint);
       $resultInsertComplaint = pg_execute($db_handle, "query_insert_complaint", array($customerProductId, $employeeId, $reasonId, $timestamp, $paymentRefund));
@@ -49,7 +49,7 @@
       }
 
       echo pg_last_error($db_handle);
-      
+
       // Kundennamen abrufen
       $queryCustomer = "SELECT c.name FROM customer c JOIN customer_product cp ON c.id = cp.customer_id WHERE cp.id = $1";
       $resultCustomer = pg_prepare($db_handle, "query_customer", $queryCustomer);
