@@ -14,12 +14,18 @@
 
   <?php
   if (isset($_GET['redirected']) && $_GET['redirected'] == 'true' && isset($_GET['orderNumber'])) {
-    // Die Seite wurde vom Skript weitergeleitet
-    $orderNumber = $_GET['orderNumber'];
+    if (isset($_POST['submit'])) {
+      $orderNumber = $_GET['orderNumber'];
 
+      $redirectUrl = "https://reklamationsmaster.azurewebsites.net/RetoureBestätigen/RetoureBestätigen.php?redirected=true&orderNumber=" . urlencode($orderNumber);
+      $script = "<script>window.location.href = '{$redirectUrl}';</script>";
+      echo $script;
+      exit; // Beenden des Skripts nach der Weiterleitung
+    }
+
+    $orderNumber = $_GET['orderNumber'];
     $db_handle = pg_connect("host=postgresql-database-server.postgres.database.azure.com dbname=reklamation_db user=coolman password=6L_.?6=8T8a~]cy");
-    $orderNumber = $_GET['orderNumber']; // Die Bestellnummer aus der URL
-  
+
     // Vorbereiten und Ausführen der SQL-Abfrage
     $query = "SELECT p.id, p.name, p.img_path, cp.quantity FROM product p INNER JOIN customer_product cp ON p.id = cp.product_id WHERE cp.id = $1";
     $result = pg_prepare($db_handle, "my_query", $query);
@@ -70,7 +76,8 @@
           </label>
         </div>
         <div class="image">
-          <img src="<?php echo htmlspecialchars($product['img_path']); ?>" alt="image" class="previewImage"> <!-- Hinzufügen von $imagePath? wegen ./ -->
+          <img src="<?php echo htmlspecialchars($product['img_path']); ?>" alt="image" class="previewImage">
+          <!-- Hinzufügen von $imagePath? wegen ./ -->
           <div class="refundCounter">
             <label class="Label_left">
               <?php echo htmlspecialchars($product['quantity']) . 'x'; ?>
@@ -103,9 +110,11 @@
     </div>
 
     <div class="container_description">
-      <label for="refundReason">Beschreibung der Probleme:</label>
-      <textarea id="text" name="text" cols="35" rows="4"></textarea>
-      <button id="submit">Rücksendung einreichen</button>
+      <form method="post" action="">
+        <label for="refundReason">Beschreibung der Probleme:</label>
+        <textarea id="text" name="text" cols="35" rows="4"></textarea>
+        <button type="submit" id="submit" name="submit">Rücksendung einreichen</button>
+      </form>
     </div>
   </div>
 </body>
