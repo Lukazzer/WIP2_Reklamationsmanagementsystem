@@ -104,15 +104,15 @@
                     echo $script;
                     exit;
                 } else {
-                    echo "Bestellnummer nicht gefunden.";
+                    echo "<script>alert('Bestellnummer nicht gefunden.');</script>";
                 }
             } else {
-                echo "Fehler bei der Ausführung der Abfrage.";
+                echo "<script>alert('Fehler bei der Ausführung der Abfrage.');</script>";
             }
 
             pg_close($db_handle);
         } else {
-            echo "Verbindung zur Datenbank fehlgeschlagen.";
+            echo "<script>alert('Verbindung zur Datenbank fehlgeschlagen.');</script>";
         }
     }
     ?>
