@@ -26,7 +26,17 @@
     $result = pg_execute($db_handle, "my_query", array($orderNumber));
 
     if ($result) {
-      $row = pg_fetch_assoc($result);
+      $product = pg_fetch_assoc($result);
+      $imagePath = './' . $product['img_path'];
+
+      // Abfrage für Beschwerdegründe
+      $queryComplaintReasons = "SELECT id, description FROM complaint_reason";
+      $resultComplaintReasons = pg_query($db_handle, $queryComplaintReasons);
+
+      $complaintReasons = array();
+      while ($row = pg_fetch_assoc($resultComplaintReasons)) {
+        $complaintReasons[] = $row;
+      }
     } else {
       // Weiterleitung zurück zur ursprünglichen Seite
       pg_close($db_handle);
@@ -47,9 +57,6 @@
 
 <body>
 
-  <?php
-  $imagePath = './aspirin.png';
-  ?>
   <div class="container_body">
     <div class="container_header">
       Bestellung:
@@ -59,18 +66,18 @@
       <div class="wrapper">
         <div class="imageLabel">
           <label for="topImageLabel">
-            <?php echo htmlspecialchars($row['name']); ?>
+            <?php echo htmlspecialchars($product['name']); ?>
           </label>
         </div>
         <div class="image">
-          <img src="<?php echo htmlspecialchars($row['img_path']); ?>" alt="image" class="previewImage">
+          <img src="<?php echo htmlspecialchars($product['img_path']); ?>" alt="image" class="previewImage"> <!-- Hinzufügen von $imagePath? wegen ./ -->
           <div class="refundCounter">
             <label class="Label_left">
-              <?php echo htmlspecialchars($row['quantity']) . 'x'; ?>
+              <?php echo htmlspecialchars($product['quantity']) . 'x'; ?>
             </label>
             <select id="refundCount" name="refundCount" required>
               <?php
-              for ($i = 0; $i <= $row['quantity']; $i++) {
+              for ($i = 0; $i <= $product['quantity']; $i++) {
                 echo "<option value='$i'>" . $i . "x</option>";
               }
               ?>
@@ -78,7 +85,7 @@
           </div>
         </div>
         <div class="imageLabel">
-          <label for="topImageLabel">12322232</label>
+          <label for="topImageLabel">Was zum Fick ist das</label>
         </div>
       </div>
     </div>
@@ -87,10 +94,11 @@
       <label for="refundReason">Grund für die Erstattung: </label>
       <select id="refundReason" name="refundReason" required>
         <option value="" disabled selected>Wählen Sie einen Grund</option>
-        <option value="defective">Defektes Produkt</option>
-        <option value="wrongItem">Falsches Produkt erhalten</option>
-        <option value="changedMind">Meinung geändert</option>
-        <option value="changedMind">Sonstige </option>
+        <?php
+        foreach ($complaintReasons as $reason) {
+          echo "<option value='" . htmlspecialchars($reason['id']) . "'>" . htmlspecialchars($reason['description']) . "</option>";
+        }
+        ?>
       </select>
     </div>
 
