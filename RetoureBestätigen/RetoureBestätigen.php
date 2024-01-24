@@ -11,8 +11,8 @@
   include '../Design/design.php';
 
   $db_handle = pg_connect("host=postgresql-database-server.postgres.database.azure.com dbname=reklamation_db user=coolman password=6L_.?6=8T8a~]cy");
-  
-  if (isset($_GET['orderNumber'])) {
+
+  if (isset($_GET['orderNumber']) && isset($_GET['refundReason'])) {
     $orderNumber = $_GET['orderNumber'];
     $reasonId = $_GET['refundReason'];
 
@@ -38,9 +38,36 @@
 
       $timestamp = date('Y-m-d H:i:s');
 
-      $queryInsertComplaint = "INSERT INTO complaint (customer_product_id, employee_id, reason_id, status_id, priority_id, timestamp, payment_refund) VALUES ($1, $2, $3, 1, 1, $4, $5)";
+      $queryInsertComplaint = "INSERT INTO complaint (customer_product_id, employee_id, reason_id, status_id, priority_id, timestamp, payment_refund) VALUES ($1, $2, $3, 1, 1, $4, $5) RETURNING id";
       $resultInsertComplaint = pg_prepare($db_handle, "query_insert_complaint", $queryInsertComplaint);
       $resultInsertComplaint = pg_execute($db_handle, "query_insert_complaint", array($customerProductId, $employeeId, $reasonId, $timestamp, $paymentRefund));
+
+      if ($resultInsertComplaint) {
+        $complaint = pg_fetch_assoc($resultInsertComplaint);
+        $complaintId = $complaint['id']; // Die complaint_id
+      }
+
+      // Kundennamen abrufen
+      $queryCustomer = "SELECT c.name FROM customer c JOIN customer_product cp ON c.id = cp.customer_id WHERE cp.id = $1";
+      $resultCustomer = pg_prepare($db_handle, "query_customer", $queryCustomer);
+      $resultCustomer = pg_execute($db_handle, "query_customer", array($orderNumber));
+      $customer = pg_fetch_assoc($resultCustomer);
+      $customerName = $customer['name'];
+
+      // Produktnamen und -menge abrufen
+      $queryProduct = "SELECT p.name, cp.quantity FROM product p JOIN customer_product cp ON p.id = cp.product_id WHERE cp.id = $1";
+      $resultProduct = pg_prepare($db_handle, "query_product", $queryProduct);
+      $resultProduct = pg_execute($db_handle, "query_product", array($orderNumber));
+      $product = pg_fetch_assoc($resultProduct);
+      $productName = $product['name'];
+      $productQuantity = $product['quantity'];
+
+      // Grund für die Erstattung abrufen
+      $queryReason = "SELECT description FROM complaint_reason WHERE id = $1";
+      $resultReason = pg_prepare($db_handle, "query_reason", $queryReason);
+      $resultReason = pg_execute($db_handle, "query_reason", array($reasonId));
+      $reason = pg_fetch_assoc($resultReason);
+      $refundReason = $reason['description'];
     } else {
       exit;
     }
@@ -56,19 +83,24 @@
 <body>
   <div class="container_body">
     <div class="container_header">
-      Retoure bestätigt: 12322
+      Retoure bestätigt:
+      <?php echo htmlspecialchars($complaintId); ?>
     </div>
     <div class="container_content">
 
-      <p>Liebe [Kundenname],</p>
-
-      <p>Ihre Anfrage der Retoure für Bestellung #12345 wird bestätigt. Hier sind die Details zu Ihrem Antrag:</p>
-
+      <p>Liebe
+        <?php echo htmlspecialchars($customerName); ?>,
+      </p>
+      <p>Ihre Anfrage der Retoure für Bestellung #
+        <?php echo htmlspecialchars($orderNumber); ?> wird bestätigt. Hier sind die Details zu Ihrem Antrag:
+      </p>
       <div class="refund-details">
-        <strong>Produktname:</strong> [Produktname]<br>
-        <strong>Product Number:</strong> [Produktnummer]<br>
-        <strong>Produktmenge:</strong> [Produktmenge]<br>
-        <strong>Grund für die Erstattung:</strong> [Grund]
+        <strong>Produktname:</strong>
+        <?php echo htmlspecialchars($productName); ?><br>
+        <strong>Produktmenge:</strong>
+        <?php echo htmlspecialchars($productQuantity); ?><br>
+        <strong>Grund für die Erstattung:</strong>
+        <?php echo htmlspecialchars($refundReason); ?>
       </div>
 
       <p>Ihnen wurde an die in der Bestellung hinterlegten E-Mail Adresse ein Rücsendeeticket mit weiteren Anweisungen
@@ -78,7 +110,7 @@
       <p>Danke, dass Sie sich für unseren Service entschieden haben!</p>
 
       <div class="buttons">
-        <button id="retoureButton">Retoure bearbeiten</button>
+        <!-- <button id="retoureButton">Retoure bearbeiten</button> -->
         <button id="downloadButton">Rücksendeetickett und Anweisungen herunterladen</button>
       </div>
     </div>
