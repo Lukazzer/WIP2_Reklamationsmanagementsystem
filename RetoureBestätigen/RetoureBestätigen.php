@@ -48,6 +48,8 @@
         $complaintId = $complaint['id'];
       }
 
+      echo pg_last_error($db_handle);
+      
       // Kundennamen abrufen
       $queryCustomer = "SELECT c.name FROM customer c JOIN customer_product cp ON c.id = cp.customer_id WHERE cp.id = $1";
       $resultCustomer = pg_prepare($db_handle, "query_customer", $queryCustomer);
