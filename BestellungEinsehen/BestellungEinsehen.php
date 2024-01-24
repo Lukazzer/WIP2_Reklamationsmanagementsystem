@@ -16,8 +16,9 @@
   if (isset($_GET['redirected']) && $_GET['redirected'] == 'true' && isset($_GET['orderNumber'])) {
     if (isset($_POST['submit'])) {
       $orderNumber = $_GET['orderNumber'];
+      $refundReason = $_POST['refundReason'];
 
-      $redirectUrl = "https://reklamationsmaster.azurewebsites.net/RetoureBestätigen/RetoureBestätigen.php?redirected=true&orderNumber=" . urlencode($orderNumber);
+      $redirectUrl = "https://reklamationsmaster.azurewebsites.net/RetoureBestätigen/RetoureBestätigen.php?redirected=true&orderNumber=" . urlencode($orderNumber) . "&refundReason=" . urlencode($refundReason);
       $script = "<script>window.location.href = '{$redirectUrl}';</script>";
       echo $script;
       exit; // Beenden des Skripts nach der Weiterleitung
@@ -96,26 +97,24 @@
         </div>
       </div>
     </div>
-
-    <div class="container_reason">
-      <label for="refundReason">Grund für die Erstattung: </label>
-      <select id="refundReason" name="refundReason" required>
-        <option value="" disabled selected>Wählen Sie einen Grund</option>
-        <?php
-        foreach ($complaintReasons as $reason) {
-          echo "<option value='" . htmlspecialchars($reason['id']) . "'>" . htmlspecialchars($reason['description']) . "</option>";
-        }
-        ?>
-      </select>
-    </div>
-
-    <div class="container_description">
-      <form method="post" action="">
+    <form method="post">
+      <div class="container_reason">
+        <label for="refundReason">Grund für die Erstattung: </label>
+        <select id="refundReason" name="refundReason" required>
+          <option value="" disabled selected>Wählen Sie einen Grund</option>
+          <?php
+          foreach ($complaintReasons as $reason) {
+            echo "<option value='" . htmlspecialchars($reason['id']) . "'>" . htmlspecialchars($reason['description']) . "</option>";
+          }
+          ?>
+        </select>
+      </div>
+      <div class="container_description">
         <label for="refundReason">Beschreibung der Probleme:</label>
         <textarea id="text" name="text" cols="35" rows="4"></textarea>
         <button type="submit" id="submit" name="submit">Rücksendung einreichen</button>
-      </form>
-    </div>
+    </form>
+  </div>
   </div>
 </body>
 
