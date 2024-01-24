@@ -55,5 +55,4 @@ if ($db_handle) {
         </p>
     </footer>
 </body>
-
 </html>
