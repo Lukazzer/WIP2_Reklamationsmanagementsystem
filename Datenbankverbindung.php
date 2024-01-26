@@ -76,7 +76,7 @@
         }
 
 
-        print_r($resultArray);
+        
 
         echo "<pre>" . print_r($resultArray, true) . "</pre>";
 
