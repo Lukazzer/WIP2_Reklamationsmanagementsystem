@@ -9,8 +9,6 @@
 
     <?php
     include '../Design/design.php';
-    include '../Datenbankverbindung.php'
-
     ?>
 
     <title>Bearbeitung von Mitarbeitererstattungen</title>
@@ -30,7 +28,7 @@
             </div>
 
             <div class="dropdown">
-                <span>Mitarbeiter wählen test: <span id="selectedEmployee"></span></span>
+                <span>Mitarbeiter wählen: <span id="selectedEmployee"></span></span>
                 <div class="dropdown-content">
                     <?php
 

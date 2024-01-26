@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Design/design.css">
     <link rel="icon" href="/Design/logo1.ico">
+
+    <?php   
+    include '../Datenbankverbindung.php'
+    ?>
 </head>
 
 <body>
