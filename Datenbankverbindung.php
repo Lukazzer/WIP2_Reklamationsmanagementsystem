@@ -41,12 +41,12 @@
     {
         $conn = connectdb();
 
-        $query = "
+        $query = '
     SELECT
         c.id AS Retourenummer,
         cp.quantity AS Menge,
         cr.description AS Grund,
-        e.name AS 'Zugewiesener Mitarbeiter',
+        e.name AS "Zugewiesener Mitarbeiter",
         p.img_path AS Bildpfad
     FROM
         complaint c
@@ -60,7 +60,7 @@
         employee e ON c.employee_id = e.id
     LEFT JOIN
         product p ON cp.product_id = p.id;
-";
+';
 
         $result = pg_query($conn, $query);
 
@@ -79,7 +79,7 @@
         print_r($resultArray);
 
         echo "<pre>" . print_r($resultArray, true) . "</pre>";
-        
+
         pg_close($conn);
     }
 
