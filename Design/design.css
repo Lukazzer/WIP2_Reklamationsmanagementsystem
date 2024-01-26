@@ -160,9 +160,6 @@ header {
 }
 
 
-
-
-/* Place the navbar at the bottom of the page, and make it stick */
 .navbar {
   background-color: #24252a;
   overflow: hidden;
@@ -172,7 +169,7 @@ header {
   
 }
 
-/* Style the links inside the navigation bar */
+
 .navbar a {
   float:inherit;
   display: block;
@@ -185,12 +182,12 @@ header {
   
 }
 
-/* Change the color of links on hover */
+
 .navbar a:hover {
  
 }
 
-/* Add a color to the active/current link */
+
 .navbar a.active {
   
   color: #0088a9;
