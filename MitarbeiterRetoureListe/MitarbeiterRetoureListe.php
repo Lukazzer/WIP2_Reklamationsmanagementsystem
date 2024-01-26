@@ -47,7 +47,7 @@
                 <div class="product">
                     <img src="<?php echo $imagePath; ?>" alt="image" class="imagePreview">
                     <div class="productInfo">
-                        <p>Retourenummer: 23232323 </p>
+                        <p>Retourenummer: 2323232344 </p>
                         <p>Menge: 4</p>
                         <p>Grund: Defektes Produkt</p>
                         <p>Zugewiesener Mitarbeiter: Hans M. </p>
