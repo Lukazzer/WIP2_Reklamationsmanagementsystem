@@ -32,7 +32,7 @@
                 <div class="dropdown-content">
                     <?php
 
-                     fillNameList();
+                    fillNameList();
                     ?>
                 </div>
             </div>
@@ -60,6 +60,9 @@
 
             </div>
         </div>
+        <?php
+        getArrayProductInfo();
+        ?>
 
         <script>
             function changeText(employeeName) {
