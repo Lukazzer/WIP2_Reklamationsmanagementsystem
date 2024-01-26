@@ -1,3 +1,30 @@
+<?php
+
+$db_handle = pg_connect("host=postgresql-database-server.postgres.database.azure.com dbname=reklamation_db user=coolman password=6L_.?6=8T8a~]cy");
+
+// Prüft, ob Erstattungsdetails in den URL-Parametern vorhanden sind
+if (isset($_GET['refund_id'])) {
+    $refundID = $_GET['refund_id'];
+
+    // Erstattungsdetails abrufen
+    $query = "SELECT * FROM refunds WHERE refund_id = $1";
+    $result = pg_query_params($db_handle, $query, array($refundID));
+
+    if ($result && pg_num_rows($result) > 0) {
+        // Abrufen der Erstattungsdetails
+        $refundDetails = pg_fetch_assoc($result);
+    } else {
+        
+        echo "Retourenummer ist nicht gefunden.";
+        exit;
+    }
+} else {
+    // (e.g., display an error message)
+    echo "Retourenummer nicht vorhanden.";
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
