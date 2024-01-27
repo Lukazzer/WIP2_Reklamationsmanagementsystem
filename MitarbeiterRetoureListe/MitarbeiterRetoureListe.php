@@ -44,24 +44,49 @@
 
 
             <div class="refundDetails">
-                <div class="product">
-                    <img src="<?php echo $imagePath; ?>" alt="image" class="imagePreview">
-                    <div class="productInfo">
-                        <p>Retourenummer: 2323232344 </p>
-                        <p>Menge: 4</p>
-                        <p>Grund: Defektes Produkt</p>
-                        <p>Zugewiesener Mitarbeiter: Hans M. </p>
+                <div class="cell">
+                    <div class="product">
+                        <img src="<?php echo $imagePath; ?>" alt="image" class="imagePreview">
+                        <div class="productInfo">
+                            <p>Retourenummer: 2323232344 </p>
+                            <p>Menge: 4</p>
+                            <p>Grund: Defektes Produkt</p>
+                            <p>Zugewiesener Mitarbeiter: Hans M. </p>
+                        </div>
                     </div>
+                    <button class="button_right"> Wählen </button>
                 </div>
+                <?php
 
 
-                <button class="button_right"> Wählen </button>
+                foreach (getArrayProductInfo() as $data) {
+
+                    $retourenummer = $data['retourenummer'];
+                    $menge = $data['menge'];
+                    $grund = $data['grund'];
+                    $zugewiesenerMitarbeiter = $data['Zugewiesener Mitarbeiter'];
+                    $imagePath = $data['bildpfad'];
 
 
+                    echo '<div class="cell">';
+                    echo '<div class="product">';
+                    echo '<img src="' . '../BestellungEinsehen/'. $imagePath . '" alt="image" class="imagePreview">';
+                    echo '<div class="productInfo">';
+                    echo '<p>Retourenummer: ' . $retourenummer . '</p>';
+                    echo '<p>Menge: ' . $menge . '</p>';
+                    echo '<p>Grund: ' . $grund . '</p>';
+                    echo '<p>Zugewiesener Mitarbeiter: ' . $zugewiesenerMitarbeiter . '</p>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '<button class="button_right"> Wählen </button>';
+                    echo '</div>';
+                }
+                ?>
             </div>
         </div>
         <?php
-        getArrayProductInfo();
+        //getArrayProductInfo();
+        //echo "<pre>" . print_r(getArrayProductInfo(), true) . "</pre>";
         ?>
 
         <script>

@@ -76,11 +76,11 @@
         }
 
 
-        
 
-        echo "<pre>" . print_r($resultArray, true) . "</pre>";
 
         pg_close($conn);
+
+        return $resultArray;
     }
 
 
