@@ -37,52 +37,50 @@
         pg_close($conn);
     }
 
-    function getArrayProductInfo()
+    function getArrayProductInfo($name)
     {
         $conn = connectdb();
 
         $query = '
-    SELECT
-        c.id AS Retourenummer,
-        cp.quantity AS Menge,
-        cr.description AS Grund,
-        e.name AS "Zugewiesener Mitarbeiter",
-        p.img_path AS Bildpfad
-    FROM
-        complaint c
-    JOIN
-        complaint_customer_product ccp ON c.id = ccp.complaint_id
-    JOIN
-        customer_product cp ON ccp.customer_product_id = cp.id
-    JOIN
-        complaint_reason cr ON c.reason_id = cr.id
-    LEFT JOIN
-        employee e ON c.employee_id = e.id
-    LEFT JOIN
-        product p ON cp.product_id = p.id;
-';
+        SELECT
+            c.id AS Retourenummer,
+            cp.quantity AS Menge,
+            cr.description AS Grund,
+            e.name AS "Zugewiesener Mitarbeiter",
+            p.img_path AS Bildpfad
+        FROM
+            complaint c
+        JOIN
+            complaint_customer_product ccp ON c.id = ccp.complaint_id
+        JOIN
+            customer_product cp ON ccp.customer_product_id = cp.id
+        JOIN
+            complaint_reason cr ON c.reason_id = cr.id
+        LEFT JOIN
+            employee e ON c.employee_id = e.id
+        LEFT JOIN
+            product p ON cp.product_id = p.id';
 
-        $result = pg_query($conn, $query);
+       
+        if (!empty($name)) {
+            $query .= ' WHERE e.name = $1';  
+        }
 
+        $result = pg_query_params($conn, $query, array($name));
 
         if (!$result) {
             die("Abfrage fehlgeschlagen");
         }
-
 
         $resultArray = array();
         while ($row = pg_fetch_assoc($result)) {
             $resultArray[] = $row;
         }
 
-
-
-
         pg_close($conn);
 
         return $resultArray;
     }
-
 
     ?>
 
