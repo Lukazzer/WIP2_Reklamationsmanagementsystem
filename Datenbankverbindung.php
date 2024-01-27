@@ -62,7 +62,7 @@
             product p ON cp.product_id = p.id';
 
        
-        if (!empty($name)) {
+        if (!empty($name) || !($name == "")) {
             $query .= ' WHERE e.name =' . $name;  
         }
 
