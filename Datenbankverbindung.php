@@ -63,7 +63,7 @@
 
        
         if (!empty($name)) {
-            $query .= ' WHERE e.name = $1';  
+            $query .= ' WHERE e.name =' . $name;  
         }
 
         $result = pg_query_params($conn, $query, array($name));
