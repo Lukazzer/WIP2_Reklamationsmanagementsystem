@@ -59,7 +59,7 @@
                 <?php
 
 
-                foreach (getArrayProductInfo() as $data) {
+                foreach (getArrayProductInfo("") as $data) {
 
                     $retourenummer = $data['retourenummer'];
                     $menge = $data['menge'];
