@@ -42,31 +42,31 @@
         $conn = connectdb();
 
         $query = '
-        SELECT
-            c.id AS Retourenummer,
-            cp.quantity AS Menge,
-            cr.description AS Grund,
-            e.name AS "Zugewiesener Mitarbeiter",
-            p.img_path AS Bildpfad
-        FROM
-            complaint c
-        JOIN
-            complaint_customer_product ccp ON c.id = ccp.complaint_id
-        JOIN
-            customer_product cp ON ccp.customer_product_id = cp.id
-        JOIN
-            complaint_reason cr ON c.reason_id = cr.id
-        LEFT JOIN
-            employee e ON c.employee_id = e.id
-        LEFT JOIN
-            product p ON cp.product_id = p.id';
+    SELECT
+        c.id AS Retourenummer,
+        cp.quantity AS Menge,
+        cr.description AS Grund,
+        e.name AS "Zugewiesener Mitarbeiter",
+        p.img_path AS Bildpfad
+    FROM
+        complaint c
+    JOIN
+        complaint_customer_product ccp ON c.id = ccp.complaint_id
+    JOIN
+        customer_product cp ON ccp.customer_product_id = cp.id
+    JOIN
+        complaint_reason cr ON c.reason_id = cr.id
+    LEFT JOIN
+        employee e ON c.employee_id = e.id
+    LEFT JOIN
+        product p ON cp.product_id = p.id;
+';
 
-       
         if (!empty($name) || !($name == "")) {
-            $query .= ' WHERE e.name =' . $name;  
+            $query .= ' WHERE e.name =' . $name;
         }
 
-        $result = pg_query_params($conn, $query);
+        $result = pg_query($conn, $query);
 
         if (!$result) {
             die("Abfrage fehlgeschlagen");
@@ -81,6 +81,7 @@
 
         return $resultArray;
     }
+
 
     ?>
 

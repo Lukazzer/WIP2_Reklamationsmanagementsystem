@@ -44,7 +44,7 @@
 
 
             <div class="refundDetails">
-                <div class="cell">
+              <!--   <div class="cell">
                     <div class="product">
                         <img src="<?php echo $imagePath; ?>" alt="image" class="imagePreview">
                         <div class="productInfo">
@@ -55,9 +55,8 @@
                         </div>
                     </div>
                     <button class="button_right"> Wählen </button>
-                </div>
+                </div> -->
                 <?php
-
 
                 foreach (getArrayProductInfo("") as $data) {
 
@@ -70,7 +69,7 @@
 
                     echo '<div class="cell">';
                     echo '<div class="product">';
-                    echo '<img src="' . '../BestellungEinsehen/' . $imagePath . '" alt="image" class="imagePreview">';
+                    echo '<img src="' . '../img/' . $imagePath . '" alt="image" class="imagePreview" style="max-height: 134px;" >';
                     echo '<div class="productInfo">';
                     echo '<p>Retourenummer: ' . $retourenummer . '</p>';
                     echo '<p>Menge: ' . $menge . '</p>';
