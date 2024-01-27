@@ -66,7 +66,7 @@
             $query .= ' WHERE e.name =' . $name;  
         }
 
-        $result = pg_query_params($conn, $query, array($name));
+        $result = pg_query_params($conn, $query);
 
         if (!$result) {
             die("Abfrage fehlgeschlagen");
