@@ -22,7 +22,7 @@ body {
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
     display: inline-block;
     padding-bottom: 15px;
-
+    margin-bottom: 80px;
 }
 
 * {
