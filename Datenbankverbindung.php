@@ -32,7 +32,7 @@
 
 
         while ($row = pg_fetch_assoc($result)) {
-            echo '<a href="#" onclick="changeText(\'' . $row['name'] . '\');">' . $row['name'] . '</a>';
+            echo '<a href="#" onclick="changeText(\'' . $row['name'] . '\'); changeShownCells();">' . $row['name'] . '</a>';
         }
         pg_close($conn);
     }

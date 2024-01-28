@@ -31,7 +31,7 @@
                 <span>Mitarbeiter wählen: <span id="selectedEmployee"></span></span>
                 <div class="dropdown-content">
                     <?php
-
+                    echo '<a href="#" id="alleAnzeigen" onclick="changeText(\'' . "Alle anzeigen" . '\'); changeShownCells();">' . "Alle anzeigen" . '</a>';
                     fillNameList();
                     ?>
                 </div>
@@ -44,7 +44,7 @@
 
 
             <div class="refundDetails">
-              <!--   <div class="cell">
+                <!--   <div class="cell">
                     <div class="product">
                         <img src="<?php echo $imagePath; ?>" alt="image" class="imagePreview">
                         <div class="productInfo">
@@ -90,39 +90,26 @@
 
         <script>
             var employeeNameVar = "";
+            document.getElementById('alleAnzeigen').click();
 
             function changeText(employeeName) {
                 document.getElementById('selectedEmployee').innerText = "" + employeeName;
                 employeeNameVar = employeeName;
             }
 
-            function changeCells() {
-                <?php
+            function changeShownCells() {
+                var cells = document.querySelectorAll('.cell');
 
+                cells.forEach(function(cell) {
+                    var employeeInfo = cell.querySelector('.productInfo p:nth-child(4)').innerText;
 
-                /* foreach (getArrayProductInfo(employeeNameVar) as $data) {
+                    if (employeeNameVar !== "Alle anzeigen" && !employeeInfo.includes(employeeNameVar)) {
+                        cell.style.display = 'none';
+                    } else {
 
-                    $retourenummer = $data['retourenummer'];
-                    $menge = $data['menge'];
-                    $grund = $data['grund'];
-                    $zugewiesenerMitarbeiter = $data['Zugewiesener Mitarbeiter'];
-                    $imagePath = $data['bildpfad'];
-
-
-                    echo '<div class="cell">';
-                    echo '<div class="product">';
-                    echo '<img src="' . '../BestellungEinsehen/' . $imagePath . '" alt="image" class="imagePreview">';
-                    echo '<div class="productInfo">';
-                    echo '<p>Retourenummer: ' . $retourenummer . '</p>';
-                    echo '<p>Menge: ' . $menge . '</p>';
-                    echo '<p>Grund: ' . $grund . '</p>';
-                    echo '<p>Zugewiesener Mitarbeiter: ' . $zugewiesenerMitarbeiter . '</p>';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '<button class="button_right"> Wählen </button>';
-                    echo '</div>';
-                } */
-                ?>
+                        cell.style.display = 'flex';
+                    }
+                });
             }
         </script>
 </body>
