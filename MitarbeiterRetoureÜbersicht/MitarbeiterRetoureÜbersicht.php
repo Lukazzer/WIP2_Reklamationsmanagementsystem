@@ -13,6 +13,20 @@ if (isset($_GET['refund_id'])) {
     if ($result && pg_num_rows($result) > 0) {
         // Abrufen der Erstattungsdetails
         $refundDetails = pg_fetch_assoc($result);
+
+        if (isset($_POST['accept-button'])) {
+          // Update status 'Accepted'
+          $updateQuery = "UPDATE refunds SET status = 'Accepted' WHERE refund_id = $1";
+          pg_query_params($db_handle, $updateQuery, array($refundID));
+
+          exit;
+      } elseif (isset($_POST['reject-button'])) {
+          // Update status 'Rejected'
+          $updateQuery = "UPDATE refunds SET status = 'Rejected' WHERE refund_id = $1";
+          pg_query_params($db_handle, $updateQuery, array($refundID));
+
+          exit;
+      }
     } else {
         
         echo "Retourenummer ist nicht gefunden.";
