@@ -59,7 +59,8 @@
     LEFT JOIN
         employee e ON c.employee_id = e.id
     LEFT JOIN
-        product p ON cp.product_id = p.id;
+        product p ON cp.product_id = p.id
+    WHERE c.status_id = 1;
 ';
 
         if (!empty($name) || !($name == "")) {

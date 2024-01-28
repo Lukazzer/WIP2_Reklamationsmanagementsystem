@@ -68,17 +68,24 @@
 
 
                     echo '<div class="cell">';
-                    echo '<div class="product">';
-                    echo '<img src="' . '../img/' . $imagePath . '" alt="image" class="imagePreview" style="max-height: 134px;" >';
-                    echo '<div class="productInfo">';
-                    echo '<p>Retourenummer: ' . $retourenummer . '</p>';
-                    echo '<p>Menge: ' . $menge . '</p>';
-                    echo '<p>Grund: ' . $grund . '</p>';
-                    echo '<p>Zugewiesener Mitarbeiter: ' . $zugewiesenerMitarbeiter . '</p>';
+                    echo '  <div class="product">';
+                    echo '    <img src="' . '../img/' . $imagePath . '" alt="image" class="imagePreview" style="max-height: 134px;" >';
+                    echo '    <div class="productInfo">';
+                    echo '      <p>Retourenummer: ' . $retourenummer . '</p>';
+                    echo '      <p>Menge: ' . $menge . '</p>';
+                    echo '      <p>Grund: ' . $grund . '</p>';
+                    echo '      <p>Zugewiesener Mitarbeiter: ' . $zugewiesenerMitarbeiter . '</p>';
+                    echo '    </div>';
+                    echo '  </div>';
+                    echo '  <button class="button_right" onclick="redirectToMitarbeiterRetoureÜbersicht(' . $retourenummer . ')"> Wählen </button>';
                     echo '</div>';
-                    echo '</div>';
-                    echo '<button class="button_right"> Wählen </button>';
-                    echo '</div>';
+                    echo '<script>';
+                    echo '  function redirectToMitarbeiterRetoureÜbersicht(retourenummer) {';
+                    echo '    window.location.href = "../MitarbeiterRetoureÜbersicht/MitarbeiterRetoureÜbersicht.php?complaint_id=" + retourenummer;';
+                    echo '  }';
+                    echo '</script>';
+                
+
                 }
                 ?>
             </div>
