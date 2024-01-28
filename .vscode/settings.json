@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/097d6bd4-87df-47ae-b9e8-06473dbcb28a/resourceGroups/reklamationsmaster_group/providers/Microsoft.Web/sites/reklamationsmaster",
+    "appService.deploySubpath": "."
+}

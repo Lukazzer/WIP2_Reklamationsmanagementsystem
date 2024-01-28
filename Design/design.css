@@ -6,7 +6,7 @@ body {
   background-size: cover; 
   height:100vh;
   background-position:100%;
-
+  margin-bottom: 80px;
 }
 
 .container_body{
@@ -39,6 +39,11 @@ header {
   align-items: center;
   padding: 0px 10%;
   background-color: #24252a;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
 }
 
 .logo {
@@ -160,19 +165,17 @@ header {
 }
 
 
-
-
-/* Place the navbar at the bottom of the page, and make it stick */
 .navbar {
   background-color: #24252a;
   overflow: hidden;
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 999;
   
 }
 
-/* Style the links inside the navigation bar */
+
 .navbar a {
   float:inherit;
   display: block;
@@ -185,12 +188,12 @@ header {
   
 }
 
-/* Change the color of links on hover */
+
 .navbar a:hover {
  
 }
 
-/* Add a color to the active/current link */
+
 .navbar a.active {
   
   color: #0088a9;

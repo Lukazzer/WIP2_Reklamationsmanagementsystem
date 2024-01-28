@@ -22,7 +22,7 @@
         <div class="container_orderNumber">
             <form method="post" action="">
                 <input type="text" id="orderNumber" name="orderNumber" placeholder="Bestellnummer eingeben...">
-                <button type="reset" name="orderNumberBtn">OK</button>
+                <button type="submit" name="orderNumberBtn">OK</button>
             </form>
         </div>
         <div class="container_faq">
@@ -86,13 +86,13 @@
     <?php
     if (isset($_POST['orderNumberBtn'])) {
         $db_handle = pg_connect("host=postgresql-database-server.postgres.database.azure.com dbname=reklamation_db user=coolman password=6L_.?6=8T8a~]cy");
-
+        echo "Hallo";
         if ($db_handle) {
             // Hole die eingegebene Bestellnummer und bereinige sie von möglichen schädlichen Zeichen
             $orderNumber = pg_escape_string($db_handle, $_POST['orderNumber']);
 
             // Vorbereitete Anweisung zur Überprüfung der Bestellnummer
-            $result = pg_prepare($db_handle, "my_query", 'SELECT * FROM product WHERE id = $1');
+            $result = pg_prepare($db_handle, "my_query", 'SELECT * FROM customer_product WHERE id = $1');
             $result = pg_execute($db_handle, "my_query", array($orderNumber));
 
             if ($result) {
@@ -104,15 +104,15 @@
                     echo $script;
                     exit;
                 } else {
-                    echo "Bestellnummer nicht gefunden.";
+                    echo "<script>alert('Bestellnummer nicht gefunden.');</script>";
                 }
             } else {
-                echo "Fehler bei der Ausführung der Abfrage.";
+                echo "<script>alert('Fehler bei der Ausführung der Abfrage.');</script>";
             }
 
             pg_close($db_handle);
         } else {
-            echo "Verbindung zur Datenbank fehlgeschlagen.";
+            echo "<script>alert('Verbindung zur Datenbank fehlgeschlagen.');</script>";
         }
     }
     ?>
