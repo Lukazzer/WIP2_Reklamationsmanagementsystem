@@ -14,7 +14,7 @@
 
   <?php
   if (isset($_GET['redirected']) && $_GET['redirected'] == 'true' && isset($_GET['orderNumber'])) {
-    $db_handle = pg_connect("host=postgresql-database-server.postgres.database.azure.com dbname=reklamation_db user=coolman password=6L_.?6=8T8a~]cy");
+    $db_handle = connectdb();
 
     // Überprüfen, ob ein Eintrag in 'complaint' für die gegebene 'orderNumber' existiert
     $queryCheckComplaint = "SELECT * FROM complaint_customer_product WHERE customer_product_id = $1";
@@ -47,6 +47,7 @@
     if ($result) {
       $product = pg_fetch_assoc($result);
       $imagePath = './' . $product['img_path'];
+      $productId = $product['id'];
 
       // Abfrage für Beschwerdegründe
       $queryComplaintReasons = "SELECT id, description FROM complaint_reason";
@@ -105,7 +106,7 @@
           </div>
         </div>
         <div class="imageLabel">
-          <label for="topImageLabel">Was zum Fick ist das</label>
+          <label for="topImageLabel"><?php echo htmlspecialchars($productId); ?></label>
         </div>
       </div>
     </div>
