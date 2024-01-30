@@ -31,7 +31,7 @@
       $orderNumber = $_GET['orderNumber'];
       $refundReason = $_POST['refundReason'];
       $refundCount = $_POST['refundCount'];
-      echo $refundCount;
+      echo "<script>alert('test:' + $refundCount);</script>";
       if (intval($refundCount) > 0) {
         $redirectUrl = "https://reklamationsmaster.azurewebsites.net/RetoureBestätigen/RetoureBestätigen.php?redirected=true&orderNumber=" . urlencode($orderNumber) . "&refundReason=" . urlencode($refundReason) . "&refundCount=" . urlencode($refundCount);
         $script = "<script>window.location.href = '{$redirectUrl}';</script>";
