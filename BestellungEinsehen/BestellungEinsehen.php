@@ -31,7 +31,7 @@
       $orderNumber = $_GET['orderNumber'];
       $refundReason = $_POST['refundReason'];
       $refundCount = $_POST['refundCount'];
-      echo "<script>alert('test: " . $refundCount ."');</script>";
+      echo "<script>alert('test: " . $refundCount . "');</script>";
       if (intval($refundCount) > 0) {
         $redirectUrl = "https://reklamationsmaster.azurewebsites.net/RetoureBestätigen/RetoureBestätigen.php?redirected=true&orderNumber=" . urlencode($orderNumber) . "&refundReason=" . urlencode($refundReason) . "&refundCount=" . urlencode($refundCount);
         $script = "<script>window.location.href = '{$redirectUrl}';</script>";
@@ -84,37 +84,37 @@
       Bestellnummer:
       <?php echo htmlspecialchars($orderNumber); ?>
     </div>
-    <div class="container_previewImages">
-      <div class="wrapper">
-        <div class="imageLabel">
-          <label for="topImageLabel">
-            <?php echo htmlspecialchars($product['name']); ?>
-          </label>
-        </div>
-        <div class="image">
-          <img src="<?php echo htmlspecialchars($product['img_path']); ?>" alt="image" class="previewImage">
-          <!-- Hinzufügen von $imagePath? wegen ./ -->
-          <div class="refundCounter">
-            <label class="Label_left">
-              <?php echo htmlspecialchars($product['quantity']) . 'x'; ?>
+    <form method="post">
+      <div class="container_previewImages">
+        <div class="wrapper">
+          <div class="imageLabel">
+            <label for="topImageLabel">
+              <?php echo htmlspecialchars($product['name']); ?>
             </label>
-            <select id="refundCount" name="refundCount" required>
-              <?php
-              for ($i = 0; $i <= $product['quantity']; $i++) {
-                echo "<option value='$i'>" . $i . "x</option>";
-              }
-              ?>
-            </select>
+          </div>
+          <div class="image">
+            <img src="<?php echo htmlspecialchars($product['img_path']); ?>" alt="image" class="previewImage">
+            <!-- Hinzufügen von $imagePath? wegen ./ -->
+            <div class="refundCounter">
+              <label class="Label_left">
+                <?php echo htmlspecialchars($product['quantity']) . 'x'; ?>
+              </label>
+              <select id="refundCount" name="refundCount" required>
+                <?php
+                for ($i = 0; $i <= $product['quantity']; $i++) {
+                  echo "<option value='$i'>" . $i . "x</option>";
+                }
+                ?>
+              </select>
+            </div>
+          </div>
+          <div class="imageLabel">
+            <label for="topImageLabel">Produktnummer:
+              <?php echo htmlspecialchars($productId); ?>
+            </label>
           </div>
         </div>
-        <div class="imageLabel">
-          <label for="topImageLabel">Produktnummer:
-            <?php echo htmlspecialchars($productId); ?>
-          </label>
-        </div>
       </div>
-    </div>
-    <form method="post">
       <div class="container_reason">
         <label for="refundReason">Grund für die Erstattung: </label>
         <select id="refundReason" name="refundReason" required>
