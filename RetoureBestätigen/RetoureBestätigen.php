@@ -30,6 +30,7 @@
       $employeeId = $employee['id'];
 
       $customerProductId = pg_fetch_result($resultValidate, 0, 'id');
+      $customerId = pg_fetch_result($resultValidate, 0, 'customer_id');
 
       $paymentIdQuery = "SELECT payment_id FROM customer_product WHERE id = $1";
       $resultPaymentId = pg_prepare($db_handle, "query_payment_id", $paymentIdQuery);
@@ -51,7 +52,8 @@
         $resultInsertComplaintCustomerProduct = pg_query_params($db_handle, $queryInsertComplaintCustomerProduct, array($customerProductId, $complaintId));
 
       } else {
-        echo "<script>alert('test: " . pg_last_error($db_handle) . "');</script>";
+        $error = pg_last_error($db_handle);
+        echo "<script>alert('test: " . $error . "');</script>";
       }
 
       // Kundennamen abrufen
