@@ -96,13 +96,17 @@
             $result = pg_execute($db_handle, "my_query", array($orderNumber));
 
             if ($result) {
-                // Überprüfen, ob die Bestellnummer in der Datenbank existiert
                 if (pg_numrows($result) > 0) {
-                    // Weiterleitung mit URL-Parameter
-                    $redirectUrl = "https://reklamationsmaster.azurewebsites.net/BestellungEinsehen/BestellungEinsehen.php?redirected=true&orderNumber=" . urlencode($orderNumber);
-                    $script = "<script>window.location.href = '{$redirectUrl}';</script>";
-                    echo $script;
-                    exit;
+                    $checkComplaint = pg_prepare($db_handle, "query_complaint", 'SELECT * FROM complaint_customer_product WHERE customer_product_id = $1');
+                    $checkComplaint = pg_execute($db_handle, "query_complaint", array($orderNumber));
+        
+                    if ($checkComplaint && pg_num_rows($checkComplaint) == 0) {
+                        // Weiterleitung mit URL-Parameter, wenn die Bestellnummer noch nicht in complaint_customer_product existiert
+                        $redirectUrl = "https://reklamationsmaster.azurewebsites.net/BestellungEinsehen/BestellungEinsehen.php?redirected=true&orderNumber=" . urlencode($orderNumber);
+                        $script = "<script>window.location.href = '{$redirectUrl}';</script>";
+                        echo $script;
+                        exit;
+                    }
                 } else {
                     echo "<script>alert('Bestellnummer nicht gefunden.');</script>";
                 }
