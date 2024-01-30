@@ -107,6 +107,10 @@
                         echo $script;
                         exit;
                     }
+                    else 
+                    {
+                        echo "<script>alert('Diese Bestellung wird zurzeit bearbeitet!');</script>";
+                    }
                 } else {
                     echo "<script>alert('Bestellnummer nicht gefunden.');</script>";
                 }
