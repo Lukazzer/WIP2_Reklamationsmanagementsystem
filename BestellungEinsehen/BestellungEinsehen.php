@@ -106,7 +106,7 @@
           </div>
         </div>
         <div class="imageLabel">
-          <label for="topImageLabel"><?php echo htmlspecialchars($productId); ?></label>
+          <label for="topImageLabel">Produktnummer: <?php echo htmlspecialchars($productId); ?></label>
         </div>
       </div>
     </div>
