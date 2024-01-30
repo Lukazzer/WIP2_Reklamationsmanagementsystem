@@ -93,7 +93,7 @@
             </label>
           </div>
           <div class="image">
-            <img src="<?php echo htmlspecialchars($product['img_path']); ?>" alt="image" class="previewImage">
+            <img src="<?php echo $imagePath ?>" alt="image" class="previewImage">
             <!-- Hinzufügen von $imagePath? wegen ./ -->
             <div class="refundCounter">
               <label class="Label_left">
