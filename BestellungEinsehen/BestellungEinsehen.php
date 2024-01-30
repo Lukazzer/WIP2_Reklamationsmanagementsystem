@@ -84,63 +84,31 @@
     </div>
     <div class="container_previewImages">
       <div class="wrapper">
-        <div>
-          <div class="imageLabel">
-            <label for="topImageLabel">
-              <?php echo htmlspecialchars($product['name']); ?>
+        <div class="imageLabel">
+          <label for="topImageLabel">
+            <?php echo htmlspecialchars($product['name']); ?>
+          </label>
+        </div>
+        <div class="image">
+          <img src="<?php echo htmlspecialchars($product['img_path']); ?>" alt="image" class="previewImage">
+          <!-- Hinzufügen von $imagePath? wegen ./ -->
+          <div class="refundCounter">
+            <label class="Label_left">
+              <?php echo htmlspecialchars($product['quantity']) . 'x'; ?>
             </label>
-          </div>
-          <div class="image">
-            <img src="<?php echo htmlspecialchars($product['img_path']); ?>" alt="image" class="previewImage">
-            <!-- Hinzufügen von $imagePath? wegen ./ -->
-            <div class="refundCounter">
-              <label class="Label_left">
-                <?php echo htmlspecialchars($product['quantity']) . 'x'; ?>
-              </label>
-              <select id="refundCount" name="refundCount" required>
-                <?php
-                for ($i = 0; $i <= $product['quantity']; $i++) {
-                  echo "<option value='$i'>" . $i . "x</option>";
-                }
-                ?>
-              </select>
-            </div>
-          </div>
-          <div class="imageLabel">
-            <label for="topImageLabel">Produktnummer:
-              <?php echo htmlspecialchars($productId); ?>
-            </label>
+            <select id="refundCount" name="refundCount" required>
+              <?php
+              for ($i = 0; $i <= $product['quantity']; $i++) {
+                echo "<option value='$i'>" . $i . "x</option>";
+              }
+              ?>
+            </select>
           </div>
         </div>
-      </div>
-      <div class="wrapper">
-        <div>
-          <div class="imageLabel">
-            <label for="topImageLabel">
-              <?php echo htmlspecialchars($product['name']); ?>
-            </label>
-          </div>
-          <div class="image">
-            <img src="<?php echo htmlspecialchars($product['img_path']); ?>" alt="image" class="previewImage">
-            <!-- Hinzufügen von $imagePath? wegen ./ -->
-            <div class="refundCounter">
-              <label class="Label_left">
-                <?php echo htmlspecialchars($product['quantity']) . 'x'; ?>
-              </label>
-              <select id="refundCount" name="refundCount" required>
-                <?php
-                for ($i = 0; $i <= $product['quantity']; $i++) {
-                  echo "<option value='$i'>" . $i . "x</option>";
-                }
-                ?>
-              </select>
-            </div>
-          </div>
-          <div class="imageLabel">
-            <label for="topImageLabel">Produktnummer:
-              <?php echo htmlspecialchars($productId); ?>
-            </label>
-          </div>
+        <div class="imageLabel">
+          <label for="topImageLabel">Produktnummer:
+            <?php echo htmlspecialchars($productId); ?>
+          </label>
         </div>
       </div>
     </div>

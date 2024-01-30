@@ -85,7 +85,7 @@
 
     <?php
     if (isset($_POST['orderNumberBtn'])) {
-        $db_handle = pg_connect("host=postgresql-database-server.postgres.database.azure.com dbname=reklamation_db user=coolman password=6L_.?6=8T8a~]cy");
+        $db_handle = connectdb();
 
         if ($db_handle) {
             // Hole die eingegebene Bestellnummer und bereinige sie von möglichen schädlichen Zeichen
