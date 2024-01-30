@@ -30,11 +30,14 @@
     if (isset($_POST['submit'])) {
       $orderNumber = $_GET['orderNumber'];
       $refundReason = $_POST['refundReason'];
+      $refundCount = $_POST['refundCount'];
 
-      $redirectUrl = "https://reklamationsmaster.azurewebsites.net/RetoureBestätigen/RetoureBestätigen.php?redirected=true&orderNumber=" . urlencode($orderNumber) . "&refundReason=" . urlencode($refundReason);
-      $script = "<script>window.location.href = '{$redirectUrl}';</script>";
-      echo $script;
-      exit; // Beenden des Skripts nach der Weiterleitung
+      if (intval($refundCount) > 0) {
+        $redirectUrl = "https://reklamationsmaster.azurewebsites.net/RetoureBestätigen/RetoureBestätigen.php?redirected=true&orderNumber=" . urlencode($orderNumber) . "&refundReason=" . urlencode($refundReason) . "&refundCount=" . urlencode($refundCount);
+        $script = "<script>window.location.href = '{$redirectUrl}';</script>";
+        echo $script;
+        exit;
+      }
     }
 
     $orderNumber = $_GET['orderNumber'];
@@ -76,7 +79,6 @@
 </head>
 
 <body>
-
   <div class="container_body">
     <div class="container_header">
       Bestellnummer:

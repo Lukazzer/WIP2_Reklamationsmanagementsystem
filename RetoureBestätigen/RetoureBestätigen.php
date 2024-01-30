@@ -10,11 +10,12 @@
   <?php
   include '../Design/design.php';
 
-  $db_handle = pg_connect("host=postgresql-database-server.postgres.database.azure.com dbname=reklamation_db user=coolman password=6L_.?6=8T8a~]cy");
+  $db_handle = connectdb();
 
   if (isset($_GET['orderNumber']) && isset($_GET['refundReason'])) {
     $orderNumber = $_GET['orderNumber'];
     $reasonId = $_GET['refundReason'];
+    $quantity = $_GET['refundCount'];
 
     $queryValidate = "SELECT * FROM customer_product WHERE id = $1";
     $resultValidate = pg_prepare($db_handle, "query_validate", $queryValidate);
@@ -39,8 +40,8 @@
       $timestamp = date('Y-m-d H:i:s');
       $timestampPlus14Days = date('d.m.Y', strtotime($timestamp . ' + 14 days'));
 
-      $queryInsertComplaint = "INSERT INTO complaint (customer_id, employee_id, reason_id, status_id, priority_id, timestamp, payment_refund) VALUES ($1, $2, $3, 1, 1, $4, $5) RETURNING id";
-      $resultInsertComplaint = pg_query_params($db_handle, $queryInsertComplaint, array($customerProductId, $employeeId, $reasonId, $timestamp, $paymentRefund));
+      $queryInsertComplaint = "INSERT INTO complaint (customer_id, employee_id, reason_id, status_id, priority_id, timestamp, payment_refund, quantity) VALUES ($1, $2, $3, 1, 1, $4, $5, $6) RETURNING id";
+      $resultInsertComplaint = pg_query_params($db_handle, $queryInsertComplaint, array($customerProductId, $employeeId, $reasonId, $timestamp, $paymentRefund, $quantity));
 
       if ($resultInsertComplaint) {
         $complaint = pg_fetch_assoc($resultInsertComplaint);
