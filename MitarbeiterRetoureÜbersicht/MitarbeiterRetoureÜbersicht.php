@@ -76,6 +76,8 @@ if (isset($_GET['complaint_id'])) {
           foreach (getProductInfoFromComplaintID($_GET['complaint_id']) as $data) {
 
             $retourenummer = $data['retourenummer'];
+            $produktnummer = $data['produktnummer'];
+            $produktname = $data['produktname'];
             $menge = $data['menge'];
             $grund = $data['grund'];
             $zugewiesenerMitarbeiter = $data['Zugewiesener Mitarbeiter'];
@@ -86,9 +88,10 @@ if (isset($_GET['complaint_id'])) {
             echo '<div class="product">';
             echo '<img src="' . '../img/' . $imagePath . '" alt="image" class="imagePreview" style="max-height: 134px;" >';
             echo '<div class="productInfo">';
-            echo '<p>Retourenummer: ' . $retourenummer . '</p>';
-            echo '<p>Menge: ' . $menge . '</p>';
-            echo '<p>Grund: ' . $grund . '</p>';
+            echo '<p>Produktnummer:            ' . $produktnummer . '</p>';
+            echo '<p>Produktnanme:             ' . $produktname . '</p>';
+            echo '<p>Menge:                    ' . $menge . '</p>';
+            echo '<p>Grund:                    ' . $grund . '</p>';
             echo '<p>Zugewiesener Mitarbeiter: ' . $zugewiesenerMitarbeiter . '</p>';
             echo '</div>';
             echo '</div>';

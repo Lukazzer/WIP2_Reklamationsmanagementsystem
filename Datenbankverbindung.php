@@ -90,6 +90,8 @@
         $query = '
         SELECT
         c.id AS Retourenummer,
+        cp.product_id AS Produktnummer,
+        p.name AS Produktname,
         cp.quantity AS Menge,
         cr.description AS Grund,
         e.name AS "Zugewiesener Mitarbeiter",

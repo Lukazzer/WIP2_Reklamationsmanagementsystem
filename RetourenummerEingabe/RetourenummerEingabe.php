@@ -16,46 +16,51 @@
 <body>
     <div class="container_body">
         <div class="container_header">
-            Retoure einsehen
+            Retoure als angekommen markieren:
         </div>
-        <div class="container_content">
-            <input type="text" id="refundID" placeholder="Retourenummer eingeben...">
-            <button onclick="getRetoureInfo()">OK</button>
-        </div>
+        <form method="post" id="form">
+            <div class="container_content" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                <input type="text" id="refundID" name="refundID" placeholder="Retourenummer eingeben...">
+                <button type="submit" name="ok-button" class="ok-button">OK</button>
+            </div>
+        </form>
+
     </div>
 
     <?php
-    $db_handle = pg_connect("host=postgresql-database-server.postgres.database.azure.com dbname=reklamation_db user=coolman password=6L_.?6=8T8a~]cy");
 
-    function getRefundInfo($refundID, $db_handle) {
-        $query = "SELECT * FROM refunds WHERE refund_id = $1";
-        $result = pg_query_params($db_handle, $query, array($refundID));
-    
-        if ($result) {
-            return pg_fetch_assoc($result);
-        } else {
-            return false;
+    $db_handle = connectdb();
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        if (isset($_POST["ok-button"])) {
+
+            $refundID = $_POST["refundID"];
+            $selectQuery = "SELECT COUNT(*) FROM complaint WHERE id = $1";
+
+            $resultSelect = pg_query_params($db_handle, $selectQuery, array($refundID));
+
+            $firstElment = pg_fetch_result($resultSelect, 0, 0);
+
+            if ($resultSelect === false || $firstElment === "0") {
+
+                echo '<script>alert("Retournummer nicht gefunden");</script>';
+            } else {
+                $updateQuery = "UPDATE complaint SET status_id = 2 WHERE id = $1";
+                $resultUpdate = pg_query_params($db_handle, $updateQuery, array($refundID));
+            }
         }
     }
-
-    if (isset($_GET['refundID'])) {
-        $refundID = $_GET['refundID'];
-    
-        // Informationen zur Erstattung erhalten
-        $refundInfo = getRefundInfo($refundID, $db_handle);
-    
-        if ($refundInfo) {
-            
-            $encodedRefundInfo = json_encode($refundInfo);
-            header("Location: https://reklamationsmaster.azurewebsites.net/MitarbeiterRetoureÜbersicht/MitarbeiterRetoureÜCbersicht.php?refundInfo=$encodedRefundInfo");
-            exit;
-        } else {
-            echo "Retourenummer ist nicht gefunden.";
-        }
-    }
-
     ?>
-    
+
+    <script>
+        function resetTextField() {
+            document.getElementById('refundID').value = '';
+        }
+
+
+    </script>
+
 </body>
 
 </html>
