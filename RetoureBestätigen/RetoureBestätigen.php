@@ -51,7 +51,7 @@
         $resultInsertComplaintCustomerProduct = pg_query_params($db_handle, $queryInsertComplaintCustomerProduct, array($customerProductId, $complaintId));
 
       } else {
-        echo pg_last_error($db_handle);
+        echo "<script>alert('test: " . pg_last_error($db_handle) . "');</script>";
       }
 
       // Kundennamen abrufen
