@@ -15,6 +15,7 @@
   <?php
   if (isset($_GET['redirected']) && $_GET['redirected'] == 'true' && isset($_GET['orderNumber'])) {
     $db_handle = connectdb();
+    $orderNumber = $_GET['orderNumber'];
 
     // Überprüfen, ob ein Eintrag in 'complaint' für die gegebene 'orderNumber' existiert
     $queryCheckComplaint = "SELECT * FROM complaint_customer_product WHERE customer_product_id = $1";
@@ -39,8 +40,6 @@
         exit;
       }
     }
-
-    $orderNumber = $_GET['orderNumber'];
 
     // Vorbereiten und Ausführen der SQL-Abfrage
     $query = "SELECT p.id, p.name, p.img_path, cp.quantity FROM product p INNER JOIN customer_product cp ON p.id = cp.product_id WHERE cp.id = $1";
