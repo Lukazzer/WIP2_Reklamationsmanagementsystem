@@ -46,7 +46,7 @@
 
     if ($result) {
       $product = pg_fetch_assoc($result);
-      $imagePath = './' . $product['img_path'];
+      $imagePath = '../img/' . $product['img_path'];
       $productId = $product['id'];
 
       // Abfrage für Beschwerdegründe
